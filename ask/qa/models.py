@@ -4,11 +4,11 @@ from django.db import models
 
 class Question(models.Model):
     title = models.CharField(max_length=50)
-    text = models.CharField(max_length=100)
+    text = models.TextField()
     added_at = models.DateField()
     rating = models.IntegerField()
-    author = models.CharField(max_length=25)
-    likes = models.ManyToManyField(User)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    likes = models.ManyToManyField(User, related_name='question_like_user')
 
 
 class QuestionManager(Question):
@@ -20,7 +20,7 @@ class QuestionManager(Question):
 
 
 class Answer(models.Model):
-    text = models.CharField(max_length=100)
+    text = models.TextField()
     added_at = models.DateField()
     question = models.OneToOneField(Question, on_delete=models.CASCADE)
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
