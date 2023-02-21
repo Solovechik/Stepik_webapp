@@ -1,8 +1,8 @@
 #/usr/bin/sh
 
 sudo /etc/init.d/mysql start
-sudo mysql -uroot -e "create database in not exists stepik_webapp"
-sudo mysql -uroot -e "create user if not exists'box'@'localhost' identified by 'mydjangopassword'"
+sudo mysql -uroot -e "create database stepik_webapp"
+sudo mysql -uroot -e "create user 'box'@'localhost' identified by 'mydjangopassword'"
 sudo mysql -uroot -e "grant all on stepik_webapp.* to 'box'@'localhost'"
 python3 ~/web/ask/manage.py makemigrations
 python3 ~/web/ask/manage.py migrate
