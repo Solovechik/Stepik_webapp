@@ -9,5 +9,5 @@ python3 ~/web/ask/manage.py migrate
 sudo ln -sf $HOME/web/etc/nginx.conf /etc/nginx/sites-enabled/default
 sudo /etc/init.d/nginx restart
 # source ~/web/ask/venv/bin/activate
-gunicorn -w 2 -b 0.0.0.0:8080 --chdir ~/web hello:hello & gunicorn -w 2 -b 0.0.0.0:8000 --chdir ~/web/ask ask.wsgi
+gunicorn -w 2 -b 127.0.0.1:8080 --chdir ~/web hello:hello & gunicorn -w 2 -b 127.0.0.1:8000 --chdir ~/web/ask ask.wsgi
 
