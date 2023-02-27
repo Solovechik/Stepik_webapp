@@ -5,7 +5,7 @@ from qa.models import Question, Answer
 
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'text', 'added_at')
+    list_display = ('pk', 'title', 'text', 'added_at')
     ordering = ('-added_at',)
     fields = ('title', 'text', 'added_at', 'rating', 'author', 'likes')
     readonly_fields = ('added_at',)

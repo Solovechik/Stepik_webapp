@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Main</title>
-</head>
-<body>
-<ul>
-    {% for question in page %}
-        <li>{{ question.title }} <a href="{{ question.get_absolute_url }}">{{ question.title }}</a></li>
-    {% endfor %}
-</ul>
-</body>
-</html>
+{% extends 'qa/base.html' %}
+
+{% block title %}Main{% endblock title %}
+{% block content %}
+    <ul>
+        {% for question in page %}
+            <li>{{ question.title }} <a href="{{ question.get_absolute_url }}">{{ question.title }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

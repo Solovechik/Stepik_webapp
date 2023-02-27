@@ -9,10 +9,21 @@
     <p>{{ question.title }}</p>
     <p>{{ question.text }}</p>
     <ul>
-        {% for answer in question.answer_question.all %}
+        {% for answer in question.answer_set.all %}
             <li>{{ answer.text }}</li>
         {% endfor %}
     </ul>
+</div>
+<div>
+    <form action="{% url 'detail_question' question.pk %}" method="POST">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for row in form %}
+            <div><label for="{{ row.id_for_label }}">{{ row.label }}</label>{{ row }}</div>
+            <div>{{ row.errors }}</div>
+        {% endfor %}
+        <input type="submit" value="Submit!">
+    </form>
 </div>
 </body>
 </html>

@@ -20,15 +20,15 @@ class Question(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(null=True, default=0)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     likes = models.ManyToManyField(User, related_name='question_like_user')
 
     def get_absolute_url(self):
-        return reverse('question', kwargs={'pk': self.pk})
+        return reverse('detail_question', kwargs={'pk': self.pk})
 
 
 class Answer(models.Model):
     text = models.TextField()
     added_at = models.DateTimeField(auto_now_add=True)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, related_name='answer_set')
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='answer_author_user')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='answer_author_user')
