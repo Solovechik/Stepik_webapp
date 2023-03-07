@@ -1,18 +1,9 @@
 {% extends 'qa/base.html' %}
 
-{% block title %}Question{% endblock title %}
+{% block title %}Signup{% endblock title %}
 {% block content %}
     <div>
-        <p>{{ question.title }}</p>
-        <p>{{ question.text }}</p>
-        <ul>
-            {% for answer in question.answer_set.all %}
-                <li>{{ answer.text }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <form action="{% url 'detail_question' question.pk %}" method="POST">
+        <form action="{% url 'user_signup' %}" method="POST">
             {% csrf_token %}
             {{ form.non_field_errors }}
             {% for row in form %}
